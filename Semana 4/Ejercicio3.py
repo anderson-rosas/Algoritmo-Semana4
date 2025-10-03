@@ -1,30 +1,20 @@
-import random
-pilaFia = []
-pilaFia2 = []
+import networkx as nx # type: ignore
+import matplotlib.pyplot as plt # Para visualización
+# Crear un grafo dirigido
+g = nx.DiGraph()
+g.add_edge("A","B",relation="amigo")
+g.add_edge("B","C",relation="trabajo")
+g.add_edge("C","D",relation="amigo")
+g.add_edge("A","D",relation="trabajo")
 
-# Push inicial
-for i in range (1,16):
-    pilaFia.append(i)
+pos = nx.spring_layout(g)
 
-print("Pila inicial:", pilaFia)
+# Dibujar nodos y aristas
+plt.figure(figsize=(8, 6))
+nx.draw(g, pos, with_labels=True, node_color='skyblue', edge_color='gray', node_size=2000, font_size=12, arrows=True)
 
-sacarD = int(input("Ingrese el numero a buscado: "))
-temp = 0
+edge_labels = nx.get_edge_attributes(g, 'relation')
+nx.draw_networkx_edge_labels(g, pos, edge_labels=edge_labels, font_color='red')
+# Dibujar el grafo
 
-# Sacar elementos hasta encontrar el número deseado
-while pilaFia:
-    temp = pilaFia.pop()
-    if temp == sacarD:
-        print(f"¡Número {sacarD} eliminado!")
-        break
-    else:
-        pilaFia2.append(temp)
-
-print("Pila después de eliminar el número:", pilaFia)
-print("Elementos guardados temporalmente:", pilaFia2)
-
-# Restaurar los elementos en el orden original
-while pilaFia2:
-    pilaFia.append(pilaFia2.pop())
-
-print("Pila restaurada (sin el número eliminado):", pilaFia)
+plt.show() # Muestra el gráfico
