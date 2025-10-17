@@ -1,0 +1,17 @@
+A B 35
+A B 30
+A G 42
+C B 36
+C D 32
+C E 52
+C H 57
+B D 34
+B E 37
+B F 43
+B G 39
+E H 40
+E F 47
+F H 45
+F G 38
+G H 46
+D E 41
